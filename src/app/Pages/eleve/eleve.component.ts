@@ -2,7 +2,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { Eleve } from '../../Models/eleve'; // Importation du modèle Eleve
-import { School } from '../../Models/school';
 
 // Définition du composant Angular avec son sélecteur, ses imports, son template et ses styles
 @Component({
@@ -14,26 +13,7 @@ import { School } from '../../Models/school';
 })
 export class EleveComponent {
   @Input() eleves!: Eleve; // Propriété d'entrée pour recevoir les données de l'élève depuis un composant parent
-  @Input() schools!: School[]; // Propriété d'entrée pour recevoir les données des écoles depuis un composant parent
-  @Output() delete = new EventEmitter<Eleve>(); // Événement de sortie pour émettre un événement de suppression
-  @Output() select = new EventEmitter<Eleve>(); // Événement de sortie pour émettre un événement de sélection
 
-  // Méthode pour émettre l'événement de suppression avec les données de l'élève
-  deleteData(eleves: Eleve) {
-    this.delete.emit(eleves);
-  }
 
-  // Méthode pour émettre l'événement de sélection avec les données de l'élève
-  selectEleve(eleves: Eleve) {
-    this.select.emit(eleves); 
-  }
 
-  // Méthode pour obtenir le nom de l'école
-  getSchoolName(schoolId: number): string {
-    if (!this.schools || this.schools.length === 0) {
-      return 'École inconnue';
-    }
-    const school = this.schools.find(s => s.id === schoolId);
-    return school ? school.nom : 'École inconnue';
-  }
 }
