@@ -18,8 +18,4 @@ export class EleveCardSearchComponent {
   // Constructeur avec injection du service de routage
   constructor(private router: Router) {}
 
-  // Méthode pour naviguer vers une autre page en passant le nom de l'élève en paramètre
-  navigateToEdit(eleves: Eleve) {
-    this.router.navigate(['/'], { queryParams: { nom: eleves.nom } });
-  }
 }

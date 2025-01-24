@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { Eleve } from '../Models/eleve';
-import { School } from '../Models/school';
-import { configuration } from './configuration.service';
+import { ConfigurationService } from './configuration.service';
 
 /**
  * Service API pour interagir avec les données des élèves.
@@ -28,7 +26,7 @@ export class ApiService {
   /**
    * URL de base de l'API.
    */
-  private apiUrl = configuration.apiUrl; 
+  private apiUrl = ConfigurationService.apiUrl; 
   
   /**
    * Constructeur du service API.
@@ -43,7 +41,7 @@ export class ApiService {
    * @returns Un Observable contenant un tableau d'objets Eleve.
    */
   getData(): Observable<Eleve[]> {
-    return this.http.get<Eleve[]>(`${this.apiUrl}/ListEleve`);
+    return this.http.get<Eleve[]>(`${this.apiUrl}/eleve`);
   }
 
   /**
@@ -56,60 +54,4 @@ export class ApiService {
     return this.http.get<Eleve>(`${this.apiUrl}/eleve/${id}`);
   }
 
-  /**
-   * Supprime les données d'un élève par son identifiant.
-   * 
-   * @param id - Identifiant de l'élève.
-   * @returns Un Observable contenant la réponse de la requête HTTP.
-   */
-  deleteDataById(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/eleve/${id}`).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  /**
-   * Ajoute un nouvel élève.
-   * 
-   * @param eleve - Objet Eleve à ajouter.
-   * @returns Un Observable contenant l'objet Eleve ajouté.
-   */
-  postData(eleve: Eleve): Observable<Eleve> {
-    return this.http.post<Eleve>(`${this.apiUrl}/eleve`, eleve).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  /**
-   * Met à jour les données d'un élève par son nom.
-   * 
-   * @param nom - Nom de l'élève.
-   * @param eleve - Objet Eleve contenant les nouvelles données.
-   * @returns Un Observable contenant l'objet Eleve mis à jour.
-   */
-  putDataByName(nom: string, eleve: Eleve): Observable<Eleve> {
-    return this.http.put<Eleve>(`${this.apiUrl}/eleve/updateByName/${nom}`, eleve).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  /**
-   * Récupère la liste des écoles.
-   * 
-   * @returns Un Observable contenant un tableau d'objets School.
-   */
-  getSchools(): Observable<School[]> {
-    return this.http.get<School[]>(`${this.apiUrl}/ListSchools`);
-  }
-
-  /**
-   * Gère les erreurs HTTP.
-   * 
-   * @param error - Objet HttpErrorResponse contenant les détails de l'erreur.
-   * @returns Un Observable qui lance une erreur.
-   */
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    console.error('An error occurred:', error);
-    return throwError(() => new Error('Something bad happened; please try again later.'));
-  }
 }
