@@ -1,27 +1,26 @@
-# EPS
+Ce dépôt contient l'application Angular utilisée par les élèves. Elle leur permet de rechercher et de consulter la liste des élèves via l'API classique du backend.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+## 🚀 Dépendances avec les autres dépôts
 
-## Development server
+Ce projet fonctionne en conjonction avec **3 autres dépôts** :
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [BDD-Projet-Formation](https://github.com/giantprolu/BDD-Projet-Formation) (Base de données)
+- [Frontend-Prof-Projet-Formation](https://github.com/giantprolu/Frontend-Prof-Projet-Formation) (Application des professeurs)
+- [Backend-Projet-Formation](https://github.com/giantprolu/Backend-Projet-Formation) (Serveur API)
 
-## Code scaffolding
+**Ce frontend utilise l'API du backend**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠️ Installation
 
-## Build
+1. **Clonez le dépôt** :
+   ```bash
+   git clone https://github.com/giantprolu/Frontend-Eleve-Projet-Formation.git
+   cd Frontend-Eleve-Projet-Formation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. **Installez les dépendances** :
+    ```bash
+    npm install
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. **Démarrez le serveur Angular** :
+    ```bash
+    ng serve
